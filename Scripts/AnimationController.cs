@@ -7,6 +7,11 @@ public class AnimationController : MonoBehaviour
 {
     [SerializeField] enemy_harmless President;
     public Animator anm;
+    public static AnimationController instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         anm = GetComponent<Animator>();
@@ -61,31 +66,12 @@ public class AnimationController : MonoBehaviour
             anm.SetBool("shoot2", true);
         }
     }
-    public void ak47Cek()
+    public void silahCek(AudioClip ses)
     {
-        WeaponManager.Instance.setSound(WeaponManager.Instance.ak47swap, "ak47");
+        WeaponManager.Instance.setSound(ses, "weapon");
         WeaponManager.Instance.ses.Play();
     }
-    public void awpCek()
-    {
-        WeaponManager.Instance.setSound(WeaponManager.Instance.awpswap, "awp");
-        WeaponManager.Instance.ses.Play();
-    }
-    public void awpCek2()
-    {
-        WeaponManager.Instance.setSound(WeaponManager.Instance.awpswap2, "awp");
-        WeaponManager.Instance.ses.Play();
-    }
-    public void pistolCek()
-    {
-        WeaponManager.Instance.setSound(WeaponManager.Instance.pistolswap,"pistol");
-        WeaponManager.Instance.ses.Play();
-    }
-    public void pompaliCek()
-    {
-        WeaponManager.Instance.setSound(WeaponManager.Instance.sawnoffswap,"shotgun");
-        WeaponManager.Instance.ses.Play();
-    }
+ 
     public void returnHand()
     {
         WeaponManager.Instance.changeWeapon(WeaponManager.Instance.slot1);
